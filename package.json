@@ -1,0 +1,28 @@
+{
+  "name": "awesom-o",
+  "version": "1.0.0",
+  "description": "My first bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robkostermans/awesom-o.git"
+  },
+  "keywords": [
+    "bot",
+    "awesom-o",
+    "4000"
+  ],
+  "author": "Rob Kostermans",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/robkostermans/awesom-o/issues"
+  },
+  "homepage": "https://github.com/robkostermans/awesom-o#readme",
+  "dependencies": {
+    "botbuilder": "^3.8.4",
+    "restify": "^4.3.0"
+  }
+}
