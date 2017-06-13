@@ -1,0 +1,24 @@
+{
+    "teams": {
+        "Web" : {
+             "DisplayName" : "Web",
+             "Emblem" : "/images/web.png",
+             "Members": [
+                 "Rob Kostermans", "Danny Huijsen", "Melvin Vermeer"
+             ]
+        },
+        "ThunderBirds" : {
+             "DisplayName" : "Thunderbirds",
+             "Emblem" : "/images/thunderbirds.png",
+             "Members": [
+                 "Renso Jacobs", "Tibor", "Andrew","Joost", "Edwin"
+             ]
+        },
+        "Fosfor" :{
+             "DisplayName" : "Fosfor"
+
+        }
+    }
+    
+}
+

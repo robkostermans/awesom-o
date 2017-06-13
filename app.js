@@ -18,9 +18,40 @@ var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
 // Create bot dialogs
-bot.dialog('/', function (session) {
+/*bot.dialog('/', function (session) {
     session.send("Hello World");
-});
+});*/
+
+/*
+bot.dialog('/', function (session) {
+    if (!session.userData.name) {
+        session.beginDialog('/profile');
+    } else {
+        session.send('Hello %s!', session.userData.name);
+    }
+});*/
+bot.dialog('/profile', [
+    function (session) {
+        builder.Prompts.text(session, 'Hi! What is your name?');
+    },
+    function (session, results) {
+        session.userData.name = results.response;
+        session.endDialog();
+    }
+]);
+bot.dialog("/", new builder.IntentDialog().matchesAny('^team', builder.DialogAction.beginDialog('/team'))
+     .onDefault(function(session){
+        builder.Prompts.text(session, 'Hi! je hebt niets te vragen en/of ik heb niets te zeggen?');
+        session.endDialog();
+     })
+
+);
+
+bot.dialog('support', require('./events/support'))
+    .triggerAction({
+        matches: [/help/i, /support/i, /problem/i]
+    });
+
 
 server.get('/', restify.serveStatic({
  directory: __dirname,
