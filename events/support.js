@@ -6,14 +6,16 @@ module.exports = function (session) {
         .searchForTeams()
         .then(function (data) {
             // Results
-            /*
-            session.send('I found in total %d hotels for your dates:', hotels.length);
+            card = createHeroCard(session,data)
+            //donsole
+            session.send('I found in total %d teams for your dates:', Object.keys(data).length);
 
             var message = new builder.Message()
                 .attachmentLayout(builder.AttachmentLayout.carousel)
-                .attachments(hotels.map(hotelAsAttachment));
-            */
-            card = createHeroCard(session,data)
+                .attachments(Object.keys(data).map(teamsAsAttachment));
+            
+            session.send(message);
+           
            
             message =  new builder.Message(session).addAttachment(card);
             session.send(message);
@@ -34,5 +36,19 @@ function createHeroCard(session,data) {
         .buttons([
             builder.CardAction.imBack(session,"actie van kaart")
                 //.openUrl(session, 'https://docs.microsoft.com/bot-framework', 'Get Started')
+        ]);
+}
+
+
+function teamsAsAttachment(team) {
+    return new builder.HeroCard()
+        .title(team.DisplayName)
+        .subtitle("propositie naam/focus")
+        .images([new builder.CardImage().url(team.emblem)])
+        .buttons([
+            new builder.CardAction()
+                .title('More details')
+                .type('openUrl')
+                .value('https://www.bing.com/search?q=hotels+in+')
         ]);
 }

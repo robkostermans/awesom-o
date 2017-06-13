@@ -1,7 +1,9 @@
 # awesom-o
 
-## Experiment
-
+## Supported
+- welke teams zijn er?
+- wie zitten er in team x?
+- in welke team zit naam?
 
 ## To haves
 in welk team zit ik

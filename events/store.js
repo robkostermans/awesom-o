@@ -1,13 +1,13 @@
-const data = require("../assets/data.json");
+const jsondata = require("../assets/data.json");
 module.exports = {
     searchForTeams: function () {
         return new Promise(function (resolve) {
            
            setFromData = {} ;
            
-           for (var team in data.teams) {
-                if (data.teams.hasOwnProperty(team)) {
-                    setFromData[team] = data.teams[team];
+           for (var team in jsondata.teams) {
+                if (jsondata.teams.hasOwnProperty(team)) {
+                    setFromData[team] = jsondata.teams[team];
                 }
             }
            
