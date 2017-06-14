@@ -14,26 +14,22 @@ module.exports = function (session,args) {
         Store
             .searchTeamForPerson(matchedName)
             .then(function (data) {
-                //session.send("Dialog - PersonInTeam");
-                //console.log(data)
-                // Results
-                //card = createHeroCard(session,data)
-                
-                //console.log(res)
-                
-                //session.send('I found in total %d teams for your dates:', Object.keys(data).length);
+                /*console.log(data)
                 var message = new builder.Message()
+                    .text("dit heb ik gevonden")
                     .attachmentLayout(builder.AttachmentLayout.carousel)
                     .attachments(data.map(teamAsAttachment));
-                
-                session.send(message);
+                */
+                for(i =0; i<data.length;i++){
+                    var message =  new builder.Message(session);
+                        team = data[i];
+                        message.text(team["user"].firstName + " zit in:")
+                        message.addAttachment(teamAsAttachment(team));
+                        session.send(message);
+                }
+               
             
-            
-               // message =  new builder.Message(session).addAttachment(card);
-                
-            //. session.send(message);
 
-                // End
                 session.endDialog();
             });
     }else{

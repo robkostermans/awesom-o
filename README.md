@@ -17,3 +17,7 @@ Welk embleem/logo/plaatje heeft team x?
 - de synoniem uitdaging 
 
 - type fouten (luis?)
+
+
+## cool
+upload image + match team
