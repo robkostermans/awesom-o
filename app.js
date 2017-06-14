@@ -1,6 +1,7 @@
 // Add your requirements
 var restify = require('restify');
 var builder = require('botbuilder');
+var Store = require('./assets/store');
 
 // Setup Restify Server
 var server = restify.createServer();
@@ -22,15 +23,26 @@ server.post('/api/messages', connector.listen());
     session.send("Hello World");
 });*/
 
-/*
+
 bot.dialog('/', function (session) {
     if (!session.userData.name) {
-        session.beginDialog('/profile');
+        session.beginDialog('/deafault');
     } else {
-        session.send('Hello %s!', session.userData.name);
+        session.send('Hi %s!', session.userData.name);
     }
-});*/
-bot.dialog('/profile', [
+    /*
+    builder.Prompts.choice(
+            session,
+            'Are you looking for a flight or a hotel?',
+            "PersonInTeam",
+            //[DialogLabels.Flights, DialogLabels.Hotels],
+            {
+                maxRetries: 3,
+                retryPrompt: 'Not a valid option'
+            });
+            */
+});
+bot.dialog('/default', [
     function (session) {
         builder.Prompts.text(session, 'Hi! What is your name?');
     },
@@ -39,18 +51,31 @@ bot.dialog('/profile', [
         session.endDialog();
     }
 ]);
-bot.dialog("/", new builder.IntentDialog().matchesAny('^team', builder.DialogAction.beginDialog('/team'))
-     .onDefault(function(session){
-        builder.Prompts.text(session, 'Hi! je hebt niets te vragen en/of ik heb niets te zeggen?');
-        session.endDialog();
-     })
 
-);
 
-bot.dialog('support', require('./events/support'))
-    .triggerAction({
-        matches: [/help/i, /support/i, /problem/i]
-    });
+Store
+    .getAllNames()
+    .then(function (data) {
+
+        var matchPersonInTeam = new RegExp("(?=.*("+data+"))(?=.*(team|groep|teams|groepen))","i");
+        bot.dialog('PersonInTeam', require('./dialogs/PersonInTeam'))
+            .triggerAction({
+                dialogArgs : {"allNames":data},
+                matches: [matchPersonInTeam]
+            });
+        /*
+        var matchAllTeams = new RegExp("(?=.*(teams|groepen))","i");
+        bot.dialog('teams', require('./dialogs/AllTeams'))
+            .triggerAction({
+                
+                matches: [matchAllTeams]
+            })
+            ;
+            */
+
+    })
+
+
 
 
 server.get('/', restify.serveStatic({

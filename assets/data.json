@@ -2,23 +2,44 @@
     "teams": {
         "Web" : {
              "DisplayName" : "Web",
-             "Emblem" : "/images/web.png",
-             "Members": [
-                 "Rob Kostermans", "Danny Huijsen", "Melvin Vermeer"
-             ]
+             "Focus" : "Maatwerk webappllicaties op basis van MSFT technologie",
+             "Emblem" : "http://via.placeholder.com/300x200/E8117F/ffffff/?text=Web"
         },
         "ThunderBirds" : {
              "DisplayName" : "Thunderbirds",
-             "Emblem" : "/images/thunderbirds.png",
-             "Members": [
-                 "Renso Jacobs", "Tibor", "Andrew","Joost", "Edwin"
-             ]
+             "Focus":"Hololens en data analyse",
+             "Emblem" : "http://via.placeholder.com/300x200/E8117F/ffffff/?text=Thunderbirds"
         },
         "Fosfor" :{
-             "DisplayName" : "Fosfor"
-
+             "DisplayName" : "Fosfor",
+             "Focus":"Security",
+             "Emblem" : "http://via.placeholder.com/300x200/E8117F/ffffff/?text=Fosfor"
+            
         }
-    }
-    
+    },
+    "people" : [
+        {
+            "firstName" : "Rob",
+            "lastName" : "Kostermans",
+            "Team" : "Web"
+        },
+        {
+            "firstName" : "Danny",
+            "lastName" : "Huijsen",
+            "Team" : "Web"
+            
+        },
+        {
+            "firstName" : "Danny",
+            "lastName" : "Burlage",
+            "Team" : "Leftovers"
+            
+        },
+        {
+            "firstName" : "Renso",
+            "lastName" : "Jacobs",
+            "Team" : "ThunderBirds"
+            
+        }
+    ]
 }
-

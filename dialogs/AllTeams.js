@@ -1,24 +1,15 @@
 var builder = require('botbuilder');
-var Store = require('./store');
+var Store = require('../assets/store');
 
 module.exports = function (session) {
     Store
         .searchForTeams()
         .then(function (data) {
             // Results
-            card = createHeroCard(session,data)
+            //card = createHeroCard(session,data)
             //donsole
-            session.send('I found in total %d teams for your dates:', Object.keys(data).length);
+            session.send("Dialog: teams");
 
-            var message = new builder.Message()
-                .attachmentLayout(builder.AttachmentLayout.carousel)
-                .attachments(Object.keys(data).map(teamsAsAttachment));
-            
-            session.send(message);
-           
-           
-            message =  new builder.Message(session).addAttachment(card);
-            session.send(message);
 
             // End
             session.endDialog();
@@ -26,7 +17,7 @@ module.exports = function (session) {
 };
 
 function createHeroCard(session,data) {
-    return new builder.HeroCard(session)
+    return new builder.ThumbnailCard(session)
         .title('BotFramework Hero Card')
         .subtitle('Your bots — wherever your users are talking')
         .text('Build and connect intelligent bots to interact with your users naturally wherever they are, from text/sms to Skype, Slack, Office 365 mail and other popular services.')
@@ -34,7 +25,7 @@ function createHeroCard(session,data) {
             builder.CardImage.create(session, 'https://sec.ch9.ms/ch9/7ff5/e07cfef0-aa3b-40bb-9baa-7c9ef8ff7ff5/buildreactionbotframework_960.jpg')
         ])
         .buttons([
-            builder.CardAction.imBack(session,"actie van kaart")
+            //builder.CardAction.imBack(session,"actie van kaart")
                 //.openUrl(session, 'https://docs.microsoft.com/bot-framework', 'Get Started')
         ]);
 }

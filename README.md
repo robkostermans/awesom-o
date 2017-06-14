@@ -15,3 +15,5 @@ In welk team zit naam?
 - het dennis connedrum?
 Welk embleem/logo/plaatje heeft team x?
 - de synoniem uitdaging 
+
+- type fouten (luis?)
