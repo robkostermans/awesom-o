@@ -26,7 +26,7 @@ server.post('/api/messages', connector.listen());
 
 bot.dialog('/', function (session) {
     if (!session.userData.name) {
-        session.beginDialog('/deafault');
+        session.beginDialog('/default');
     } else {
         session.send('Hi %s!', session.userData.name);
     }
