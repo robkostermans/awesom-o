@@ -33,13 +33,13 @@ module.exports = function (session,args) {
                 session.endDialog();
             });
     }else{
-        console.log("no matched name ask for user");
+        //session.send("Ik weet niet wie je bedoeld?");
         session.endDialog();
     }
 };
 
 function teamAsAttachment(team) {
-    console.log(team)
+    //console.log(team)
     return new builder.HeroCard()
         .title(team.DisplayName)
         .subtitle(team.Focus)
