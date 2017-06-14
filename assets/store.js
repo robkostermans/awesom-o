@@ -30,7 +30,11 @@ module.exports = {
             setFromData = [];
             for(var index in foundUsers){
                 var user = foundUsers[index];
-                combinedArray = jsondata.teams[user.Team];
+                if(jsondata.teams[user.Team]){
+                    combinedArray = jsondata.teams[user.Team];
+                }else{
+                    combinedArray = {"DisplayName": user.Team}
+                }
                 combinedArray["user"] = user;
                 setFromData.push(combinedArray);
             }

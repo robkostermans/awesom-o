@@ -23,7 +23,7 @@ module.exports = function (session,args) {
                 for(i =0; i<data.length;i++){
                     var message =  new builder.Message(session);
                         team = data[i];
-                        message.text(team["user"].firstName + " zit in:")
+                        message.text(team["user"].firstName+" "+ team["user"].lastName + " zit in:")
                         message.addAttachment(teamAsAttachment(team));
                         session.send(message);
                 }
