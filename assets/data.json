@@ -1,21 +1,107 @@
 {
     "teams": {
+         "greenloveharmony" : {
+             "DisplayName" : "Green Love & Harmony",
+             "Focus" : "Focus op people",
+             "Emblem" : "http://via.placeholder.com/300x200/E8117F/ffffff/?text=Green Love en Harmony"
+        },
+        "zotops" : {
+             "DisplayName" : "ZotOPS",
+             "Focus" : "Focus op processen binnen Wortell",
+             "Emblem" : "http://via.placeholder.com/300x200/E8117F/ffffff/?text=ZotOPS"
+        },
+        "shield" : {
+             "DisplayName" : "S.H.I.E.L.D",
+             "Focus" : "Focus op managed services",
+             "Emblem" : "http://via.placeholder.com/300x200/E8117F/ffffff/?text=S.H.I.E.L.D"
+        },
+        "spin" : {
+             "DisplayName" : "SPIN Doctors",
+             "Focus" : "Focus bestaande klanten",
+             "Emblem" : "http://via.placeholder.com/300x200/E8117F/ffffff/?text=SPIN Doctors"
+        },
+        "wolves" : {
+             "DisplayName" : "Wolves of Wortell",
+             "Focus" : "Focus nieuwe klanten",
+             "Emblem" : "http://via.placeholder.com/300x200/E8117F/ffffff/?text=Wolves of Wortell"
+        },
+        "snellejelle" : {
+             "DisplayName" : "Snelle Jelles",
+             "Focus" : "Focus op Fast Track",
+             "Emblem" : "http://via.placeholder.com/300x200/E8117F/ffffff/?text=Snelle Jelles"
+        },
+        "fosfor" : {
+             "DisplayName" : "Fosfor",
+             "Focus" : "Focus op Security, Focus op Realiteit",
+             "Emblem" : "http://via.placeholder.com/300x200/E8117F/ffffff/?text=Fosfor"
+        },
+        "porsche" : {
+             "DisplayName" : "Porsche",
+             "Focus" : "Focus op transitie naar Office 365",
+             "Emblem" : "http://via.placeholder.com/300x200/E8117F/ffffff/?text=Porsche"
+        },
+        "cloudforce" : {
+             "DisplayName" : "CloudForce",
+             "Focus" : "Focus op Slimmer samenwerken en DMS",
+             "Emblem" : "http://via.placeholder.com/300x200/E8117F/ffffff/?text=Cloudforce"
+        },
+        "thunderbirds" : {
+             "DisplayName" : "Thunderbirds",
+             "Focus" : "Focus op Bedrijfsprocessen, Data Visualisatie, Inzicht",
+             "Emblem" : "http://via.placeholder.com/300x200/E8117F/ffffff/?text=Thunderbirds"
+        },
+        "mustangs" : {
+             "DisplayName" : "The Mustangs",
+             "Focus" : "Focus op Intelligent Datacenter",
+             "Emblem" : "http://via.placeholder.com/300x200/E8117F/ffffff/?text=The Mustangs"
+        },
+        "dedominees" : {
+             "DisplayName" : "De Dominees",
+             "Focus" : "Focus op Online Werkplek",
+             "Emblem" : "http://via.placeholder.com/300x200/E8117F/ffffff/?text=De Dominees"
+        },
+        "thecontrollers" : {
+             "DisplayName" : "The Controllers",
+             "Focus" : "Focus op rapportage en organisatie",
+             "Emblem" : "http://via.placeholder.com/300x200/E8117F/ffffff/?text=The Controllers"
+        },
+        "whitehouse" : {
+             "DisplayName" : "White House",
+             "Focus" : "Een goede klant ervaring, dat is toch heel gewoon! Focus op klanttevredenheid, kwaliteit en informatiebeveiliging",
+             "Emblem" : "http://via.placeholder.com/300x200/E8117F/ffffff/?text=White House"
+        },
+        "apollo" : {
+             "DisplayName" : "Apollo",
+             "Focus" : "",
+             "Emblem" : "http://via.placeholder.com/300x200/E8117F/ffffff/?text=Apollo"
+        },
+        "senors" : {
+             "DisplayName" : "Senors",
+             "Focus" : "",
+             "Emblem" : "http://via.placeholder.com/300x200/E8117F/ffffff/?text=Sênors"
+        },
+        "ie" : {
+             "DisplayName" : "ieeeee",
+             "Focus" : "",
+             "Emblem" : "http://via.placeholder.com/300x200/E8117F/ffffff/?text=I"
+        },
         "Web" : {
              "DisplayName" : "Web",
              "Focus" : "Maatwerk webappllicaties op basis van MSFT technologie",
              "Emblem" : "http://via.placeholder.com/300x200/E8117F/ffffff/?text=Web"
         },
-        "ThunderBirds" : {
-             "DisplayName" : "Thunderbirds",
-             "Focus":"Hololens en data analyse",
-             "Emblem" : "http://via.placeholder.com/300x200/E8117F/ffffff/?text=Thunderbirds"
+        "dytter" : {
+             "DisplayName" : "Dytter",
+             "Focus" : "Het online platform waar individuele zorgvragers en zorgverleners elkaar zoeken en boeken.",
+             "Emblem" : "http://via.placeholder.com/300x200/E8117F/ffffff/?text=Dytter"
         },
-        "Fosfor" :{
-             "DisplayName" : "Fosfor",
-             "Focus":"Security",
-             "Emblem" : "http://via.placeholder.com/300x200/E8117F/ffffff/?text=Fosfor"
+        "Default" :{
+             "DisplayName" : "Wortell",
+             "Focus":"Wij helpen organisaties om in hun veranderende bedrijfsomgeving steeds voorop te lopen door de slimme inzet van nieuwe technologie.",
+             "Emblem" : "http://via.placeholder.com/300x200/5AAF41/ffffff/?text=Wortell"
             
         }
+
     },
     "people" : [
         {
@@ -38,7 +124,13 @@
         {
             "firstName" : "Renso",
             "lastName" : "Jacobs",
-            "Team" : "ThunderBirds"
+            "Team" : "thunderbirds"
+            
+        },
+        {
+            "firstName" : "Rob",
+            "lastName" : "Oudejans",
+            "Team" : "cloudforce"
             
         }
     ]

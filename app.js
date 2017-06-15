@@ -2,8 +2,6 @@
 var restify = require('restify');
 var builder = require('botbuilder');
 var Store = require('./assets/store');
-var intentRecognizer = require('./dialogs/intentRecognizer');
-
 // Setup Restify Server
 var server = restify.createServer();
 server.listen(process.env.PORT || 3000, function () {
@@ -12,44 +10,26 @@ server.listen(process.env.PORT || 3000, function () {
 
 var appId = process.env.MY_APP_ID || "Missing your app ID";
 var appSecret = process.env.MY_APP_SECRET || "Missing your app secret";
-console.log(appId)
+
 // Create chat bot
 var connector = new builder.ChatConnector
     ({ appId: appId, appPassword: appSecret });
 var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
-// Create bot dialogs
-/*bot.dialog('/', function (session) {
-    session.send("Hello World");
-});*/
 
-bot.recognizer({
-  recognize: function (context, done) {
-  var intent = { score: 0.0 };
-        var users = Store.usersInIntent(context.message.text);
-        
-        if(result.length >0 && context.message.text.match(/(team|group|zot)/i).length>0){
-            intent = { score: 1.0, intent: 'PersonInTeam' , entities : result};
-        }
-
-        done(null, intent);
-    }
-});
+var AwesomeIntentRecognizer = require('./dialogs/intentRecognizer');
+bot.recognizer(AwesomeIntentRecognizer);
 
 
 bot.dialog('/', function (session,args) {
-   var intent = intentRecognizer(session);
-   if (!intent) {
+
+   
+   if (!session.userData.name) {
         session.beginDialog('/default');
     } else {
         session.send('Hi %s!', session.userData.name);
     }
-    /*if (!session.userData.name) {
-        session.beginDialog('/default');
-    } else {
-        session.send('Hi %s!', session.userData.name);
-    }*/
     /*
     builder.Prompts.choice(
             session,
@@ -81,7 +61,17 @@ bot.dialog('/PersonInTeam',require('./dialogs/PersonDetails'))
         matches: "PersonInTeam"
     });
 
+bot.dialog('/TeamDetails',require('./dialogs/TeamDetails'))
+    .triggerAction({
+        matches: "TeamDetails"
+    });
 
+bot.dialog('/AlleTeams',require('./dialogs/AllTeams'))
+    .triggerAction({
+        matches: "AlleTeams"
+    });
+
+/*
 Store
     .getAllNames()
     .then(function (data) {
@@ -101,7 +91,7 @@ Store
             ;
         
     })
-
+*/
 
 
 

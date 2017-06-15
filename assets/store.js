@@ -2,21 +2,21 @@ const data_file = require("../assets/data.json");
 const jsondata = data_file;
 
 module.exports = {
-    usersInIntent: function (names) {
+    usersInIntent: function (utterance) {
         //return new Promise(function (resolve) {
-            names = names.toLowerCase();
+            utterance = utterance.toLowerCase();
             setFromData = [] ;
-
+            
             //1. first match full hits (and rmove them)
             var foundUsers = jsondata.people.filter(function (row) {
-                if(names.indexOf(row.firstName.toLowerCase()+" "+row.lastName.toLowerCase())>=0 ) {
-                    names = names.replace(row.firstName.toLowerCase()+" "+row.lastName.toLowerCase(),"")
+                if(utterance.indexOf(row.firstName.toLowerCase()+" "+row.lastName.toLowerCase())>=0 ) {
+                    utterance = utterance.replace(row.firstName.toLowerCase()+" "+row.lastName.toLowerCase(),"")
                     setFromData.push(row);
                 }
             });
             // match users on firstname
             var foundUsers = jsondata.people.filter(function (row) {
-                if(names.indexOf(row.firstName.toLowerCase())>=0 || names.indexOf(row.lastName.toLowerCase())>=0) {
+                if(utterance.indexOf(row.firstName.toLowerCase())>=0 || utterance.indexOf(row.lastName.toLowerCase())>=0) {
                      setFromData.push(row);
                 }
             });
@@ -24,18 +24,49 @@ module.exports = {
             return(setFromData);
         //});
     },
+    teamsInIntent: function (utterance) {
+        //return new Promise(function (resolve) {
+            utterance = utterance.toLowerCase();
+            setFromData = [] ;
+
+            //1. match full hits (and rmove them)
+            //console.log(jsondata.teams["greenloveharmony"])
+            for(var index in jsondata.teams){
+                team = jsondata.teams[index];
+                if(utterance.indexOf(team.DisplayName.toLowerCase())>=0 ) {
+                    //setFromData.push(team);
+                }
+            };
+            
+            return(setFromData);
+        //});
+    },
+    getTeamsForUsers: function(users){
+        return new Promise(function (resolve) {
+            setFromData = [] ;
+            for(var index in users){
+                user = users[index];
+                team = jsondata.teams[user.Team];
+                team_data = (!team)? jsondata.teams["Default"] : team ;
+                team_data.retrievedForUser = user;
+                setFromData.push(team_data);
+            }
+
+            resolve(setFromData);
+        });
+    },
     searchForTeams: function () {
         return new Promise(function (resolve) {
            
            setFromData = {} ;
            
-           for (var team in jsondata.teams) {
-                if (jsondata.teams.hasOwnProperty(team)) {
-                    setFromData[team] = jsondata.teams[team];
-                }
+            for(var index in jsondata.teams){
+                team = jsondata.teams[index];
+                setFromData[index] = team;
+                //console.log( setFromData[index])
             }
            
-           setTimeout(function () { resolve(setFromData); }, 0);
+           resolve(setFromData);
         });
     },
     searchTeamForPerson: function (names) {
