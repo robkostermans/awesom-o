@@ -44,10 +44,10 @@ function teamAsAttachment(team) {
         .title(team.DisplayName)
         .subtitle(team.Focus)
         .images([new builder.CardImage().url(team.Emblem)])
-        /*.buttons([
+        .buttons([
             new builder.CardAction()
                 .title('More details')
                 .type('openUrl')
                 .value('https://www.bing.com/search?q=hotels+in+')
-        ]);*/
+        ]);
 }
