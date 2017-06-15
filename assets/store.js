@@ -2,6 +2,28 @@ const data_file = require("../assets/data.json");
 const jsondata = data_file;
 
 module.exports = {
+    usersInIntent: function (names) {
+        //return new Promise(function (resolve) {
+            names = names.toLowerCase();
+            setFromData = [] ;
+
+            //1. first match full hits (and rmove them)
+            var foundUsers = jsondata.people.filter(function (row) {
+                if(names.indexOf(row.firstName.toLowerCase()+" "+row.lastName.toLowerCase())>=0 ) {
+                    names = names.replace(row.firstName.toLowerCase()+" "+row.lastName.toLowerCase(),"")
+                    setFromData.push(row);
+                }
+            });
+            // match users on firstname
+            var foundUsers = jsondata.people.filter(function (row) {
+                if(names.indexOf(row.firstName.toLowerCase())>=0 || names.indexOf(row.lastName.toLowerCase())>=0) {
+                     setFromData.push(row);
+                }
+            });
+
+            return(setFromData);
+        //});
+    },
     searchForTeams: function () {
         return new Promise(function (resolve) {
            

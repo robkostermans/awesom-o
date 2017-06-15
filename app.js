@@ -2,6 +2,7 @@
 var restify = require('restify');
 var builder = require('botbuilder');
 var Store = require('./assets/store');
+var intentRecognizer = require('./dialogs/intentRecognizer');
 
 // Setup Restify Server
 var server = restify.createServer();
@@ -23,13 +24,32 @@ server.post('/api/messages', connector.listen());
     session.send("Hello World");
 });*/
 
+bot.recognizer({
+  recognize: function (context, done) {
+  var intent = { score: 0.0 };
+        var users = Store.usersInIntent(context.message.text);
+        
+        if(result.length >0 && context.message.text.match(/(team|group|zot)/i).length>0){
+            intent = { score: 1.0, intent: 'PersonInTeam' , entities : result};
+        }
 
-bot.dialog('/', function (session) {
-    if (!session.userData.name) {
+        done(null, intent);
+    }
+});
+
+
+bot.dialog('/', function (session,args) {
+   var intent = intentRecognizer(session);
+   if (!intent) {
         session.beginDialog('/default');
     } else {
         session.send('Hi %s!', session.userData.name);
     }
+    /*if (!session.userData.name) {
+        session.beginDialog('/default');
+    } else {
+        session.send('Hi %s!', session.userData.name);
+    }*/
     /*
     builder.Prompts.choice(
             session,
@@ -42,6 +62,9 @@ bot.dialog('/', function (session) {
             });
             */
 });
+
+
+
 bot.dialog('/default', [
     function (session) {
         builder.Prompts.text(session, 'Hi! What is your name?');
@@ -53,17 +76,22 @@ bot.dialog('/default', [
 ]);
 
 
+bot.dialog('/PersonInTeam',require('./dialogs/PersonDetails'))
+    .triggerAction({
+        matches: "PersonInTeam"
+    });
+
+
 Store
     .getAllNames()
     .then(function (data) {
 
-        var matchPersonInTeam = new RegExp("(?=.*("+data+"))(?=.*(team|groep|teams|groepen))","i");
+        var matchPersonInTeam = new RegExp("(?=.*("+data+"))(?=.*(zots))","i");
         bot.dialog('PersonInTeam', require('./dialogs/PersonInTeam'))
             .triggerAction({
                 dialogArgs : {"allNames":data},
                 matches: [matchPersonInTeam]
             });
-        /*
         var matchAllTeams = new RegExp("(?=.*(teams|groepen))","i");
         bot.dialog('teams', require('./dialogs/AllTeams'))
             .triggerAction({
@@ -71,8 +99,7 @@ Store
                 matches: [matchAllTeams]
             })
             ;
-            */
-
+        
     })
 
 
