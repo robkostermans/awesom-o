@@ -48,6 +48,6 @@ function teamAsAttachment(team) {
             new builder.CardAction()
                 .title('More details')
                 .type('openUrl')
-                .value('https://www.bing.com/search?q=hotels+in+')
+                .value('https://www.wortell.nl/teams/web')
         ]);
 }
