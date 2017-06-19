@@ -1,7 +1,8 @@
 // Add your requirements
 var restify = require('restify');
 var builder = require('botbuilder');
-var Store = require('./assets/store');
+//var Store = require('./assets/store');
+
 // Setup Restify Server
 var server = restify.createServer();
 server.listen(process.env.PORT || 3000, function () {
@@ -18,10 +19,31 @@ var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
 
-var AwesomeIntentRecognizer = require('./dialogs/intentRecognizer');
-bot.recognizer(AwesomeIntentRecognizer);
+//var AwesomeIntentRecognizer = require('./intents/intentRecognizer');
+//bot.recognizer(AwesomeIntentRecognizer);
+
+//bot.recognizer(require('./intentRecognizers/intentAllteams'));
+var allteams = require('./intents/AlleTeams');
+var teamForPerson = require('./intents/teamForPerson');
+//var AwesomeIntentRecognizer = require('./intents/intentRecognizer');
+const intents = new builder.IntentDialog({
+    recognizers: [
+        //new builder.LuisRecognizer(process.env.LUIS_ENDPOINT)
+        teamForPerson,
+        allteams,
+    ],
+    intentThreshold: 0.2,
+    recognizeOrder: builder.RecognizeOrder.parallel
+});
+//intents.matches('', '/Default');
+intents.matches('AlleTeams', '/AlleTeams');
+intents.matches('TeamForPerson', '/TeamForPerson');
+intents.matches('TeamDetails', '/TeamDetails');
 
 
+bot.dialog('/', intents);
+
+/*
 bot.dialog('/', function (session,args) {
 
    
@@ -30,18 +52,7 @@ bot.dialog('/', function (session,args) {
     } else {
         session.send('Hi %s!', session.userData.name);
     }
-    /*
-    builder.Prompts.choice(
-            session,
-            'Are you looking for a flight or a hotel?',
-            "PersonInTeam",
-            //[DialogLabels.Flights, DialogLabels.Hotels],
-            {
-                maxRetries: 3,
-                retryPrompt: 'Not a valid option'
-            });
-            */
-});
+});*/
 
 
 
@@ -56,20 +67,20 @@ bot.dialog('/default', [
 ]);
 
 
-bot.dialog('/PersonInTeam',require('./dialogs/PersonDetails'))
-    .triggerAction({
-        matches: "PersonInTeam"
-    });
+bot.dialog('/TeamForPerson',require('./dialogs/TeamForPerson'))
+    //.triggerAction({
+    //    matches: "PersonInTeam"
+    //});
 
 bot.dialog('/TeamDetails',require('./dialogs/TeamDetails'))
-    .triggerAction({
-        matches: "TeamDetails"
-    });
+    //.triggerAction({
+    //    matches: "TeamDetails"
+    //});
 
 bot.dialog('/AlleTeams',require('./dialogs/AllTeams'))
-    .triggerAction({
-        matches: "AlleTeams"
-    });
+    //.triggerAction({
+    //    matches: "AlleTeams"
+    //});
 
 /*
 Store

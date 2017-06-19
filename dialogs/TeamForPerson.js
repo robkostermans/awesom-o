@@ -2,8 +2,9 @@ var builder = require('botbuilder');
 var Store = require('../assets/store');
 
 module.exports = function (session,args) {
+
     Store
-        .getTeamsForUsers(args.intent.entities)
+        .getTeamsForUsers(args.entities)
        .then(function(teams){
             //1 result -> hercoard
 

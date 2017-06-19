@@ -14,7 +14,7 @@ module.exports =  {
             users.length >0 
             //&& context.message.text.match(/(team|groep|zot)/i).length>0
         ){
-            intent = { score: 1.0, intent: 'PersonInTeam' , entities : users};
+            intent = { score: 0.5, intent: 'PersonInTeam' , entities : users};
             intentSet = true;
         }
 
@@ -24,18 +24,18 @@ module.exports =  {
             && teams.length >0 
             //&& context.message.text.match(/(doet|team|zot|focus)/i).length>0
         ){
-            intent = { score: 1.0, intent: 'TeamDetails' , entities : teams};
+            intent = { score: 0.5, intent: 'TeamDetails' , entities : teams};
             intentSet=true;
         }
 
-        if(
+        /*if(
             intentSet != true
             //&& teams.length >0 
             && context.message.text.match(/(welke|teams|alle)/i).length>0
         ){
-            intent = { score: 1.0, intent: 'AlleTeams'};
+            intent = { score: 0.5, intent: 'AlleTeams'};
             intentSet=true;
-        }
+        }*/
 
         //console.log(intent)
         done(null, intent);

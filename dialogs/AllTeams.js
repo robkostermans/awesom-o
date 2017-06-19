@@ -14,7 +14,7 @@ module.exports = [
                 teamslist ="## De volgende teams zijn er binnen Wortell:\n\n";
                 for(var index in teams){
                     team = teams[index];
-                    teamslist +="- "+team.DisplayName+"\n\n ";
+                    teamslist +="- "+team.DisplayName+"\n ";
                 }
                 //teamslist = teamslist.slice(0,-2);
                 message.text(teamslist);
@@ -30,7 +30,7 @@ module.exports = [
     },
     function (session, results, next){
         // check
-        console.log(session.dialogData.teams)
+       // console.log(session.dialogData.teams)
         session.send('Gevonden'); 
         session.endDialog();
     }
