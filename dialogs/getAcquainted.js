@@ -6,10 +6,11 @@ module.exports = [
     },
     function (session, results) {
         var name = results.response;
-        name.replace("ik ben","");
-        name.replace("mijn naam is","");
-        name.replace("mijn voornaam is","");
+        name = name.replace("ik ben","");
+        name = name.replace("mijn naam is","");
+        name = name.replace("mijn voornaam is","");
         session.userData.name = name;
+        builder.Choice.text(session, 'ben jij '+ name +'?');
         session.send('Hoi %s! aangenaam kennis te maken.', session.userData.name);
         session.endDialog();
     }

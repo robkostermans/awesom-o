@@ -4,27 +4,19 @@
       <title>MyAppID</title>
    </head>
    <style>
-    #result{
+    .window{
         width:400px;
         min-height:400px;
         background:#f2f2f2;
     }
    </style>
    <body>
-    <ul class="checks">
-        <li><a href="#" data-query="">Welke teams zijn er?</a></li>
-        <li><a href="#">Wie zitten er in team web?</a></li>
-        <li><a href="#">In welk team zit Rob?</a></li>
-        <li><a href="#">Wie is contactpersoon voor team web?</a></li>
-        <li id="result">
-            loading...
-        </li>
-    </ul>
+  
     
-
-        <a href='https://teams.microsoft.com/l/chat/0/0?users=28:8046133f-0063-4a28-8509-2b9d6712097c'><img height="30" width="113" src='https://dev.botframework.com/Client/Images/Add-To-MSTeams-Buttons.png'></a>
-        <iframe src='https://webchat.botframework.com/embed/awesome-0?s=PlQ1lzVJrfY.cwA.Sgo.lJg9jdwr1rnFIF2GqHegm8_ruczbIEpCepS6oQatM2U' style="width:50vw;height:50vh"></iframe>
-
+        <div class="window">
+            <iframe class="chat" src='https://webchat.botframework.com/embed/awesome-0?s=PlQ1lzVJrfY.cwA.Sgo.lJg9jdwr1rnFIF2GqHegm8_ruczbIEpCepS6oQatM2U' width="100%" height="100%"></iframe>
+            <a href='https://teams.microsoft.com/l/chat/0/0?users=28:8046133f-0063-4a28-8509-2b9d6712097c'><img height="30" width="113" src='https://dev.botframework.com/Client/Images/Add-To-MSTeams-Buttons.png'></a>
+     </div>
 
         <script src="events/store.js"></script>
         <script>
