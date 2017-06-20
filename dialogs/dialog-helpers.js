@@ -17,7 +17,7 @@ module.exports = {
         
     },
 
-    teamAsAttachment(team) {
+    teamAsAttachment:function(team) {
         console.log(team)
         return new builder.HeroCard()
             .title(team.DisplayName)
@@ -31,5 +31,15 @@ module.exports = {
                     .type('openUrl')
                     .value('http://www.wortell.nl/teams/web')
             ]);
+    },
+
+    createThumbnailCard:function(session) {
+        return new builder.ThumbnailCard(session)
+            .title('A.W.E.S.O.M-O 4000')
+            .subtitle('Ik weet vanalles over teams binnen wortell.')
+            .text('Je kan me vragen welke teams er zijn, wie in welk team zit of meer informatie over mij.')
+            .images([
+                builder.CardImage.create(session, 'http://awesom-o.azurewebsites.net/assets/boto-logo.png')
+            ])
     }
 }

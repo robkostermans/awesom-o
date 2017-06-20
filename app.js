@@ -30,17 +30,15 @@ AllIntentsRecognizers.push( new builder.LuisRecognizer(LuisUrl))
 
 const intents = new builder.IntentDialog({
     recognizers: AllIntentsRecognizers,
-    intentThreshold: 0.2,
+    intentThreshold: 0.1,
     recognizeOrder: builder.RecognizeOrder.parallel
 });
 
 intents.matches('AlleTeams', '/AlleTeams');
 intents.matches('FindTeamForUser', '/FindTeamForUser');
 intents.matches('FindAllTeams', '/FindAllTeams');
-
-
-//intents.matches('TeamDetails', '/TeamDetails');
 intents.matches('AboutAwesomeO', '/aboutAwesome-o');
+intents.matches('BotServices', '/BotServices');
 intents.matches(/\!\:/i, '/doCommands');
 intents.onDefault('/default');
 //Um, actually, A.W.E.S.O.M.-O is not programmed for that function.
@@ -48,7 +46,6 @@ intents.onDefault('/default');
 bot.dialog('/', intents);
 
 bot.dialog('/default', [
-    
     function (session,args) {
        if (session.userData.name) {
             session.beginDialog('/getStarted');
@@ -63,6 +60,8 @@ bot.dialog('/default', [
 bot.dialog("/getStarted",require('./dialogs/getStarted'))
 
 bot.dialog("/getAcquainted",require('./dialogs/getAcquainted'))
+
+bot.dialog("/BotServices",require('./dialogs/botServices'))
 
 bot.dialog("/aboutAwesome-o",require('./dialogs/aboutAwesome-o'))
 
