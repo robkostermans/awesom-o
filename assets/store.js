@@ -41,19 +41,41 @@ module.exports = {
             return(setFromData);
         //});
     },
-    getTeamsForUsers: function(users){
+    isUser: function(entities){
         return new Promise(function (resolve) {
             setFromData = [] ;
-            for(var index in users){
-                user = users[index];
-                team = jsondata.teams[user.Team];
-                team_data = (!team)? jsondata.teams["Default"] : team ;
-                team_data.retrievedForUser = user;
-                setFromData.push(team_data);
-            }
 
+            foundUsers = jsondata.people.filter(function (row) {
+                var firstname = false;
+                var lastname =  false;
+                for(var index in entities){
+                    entity = entities[index];
+                    if(entity.type=="person::firstname"){
+                        firstname = entity.entity;
+                    }
+                    if(entity.type=="person::lastname"){
+                        lastname = entity.entity;
+                    }
+                };
+                console.log(firstname)
+                    if(
+                        (firstname && lastname)
+                        && (row.firstName.toLowerCase() == firstname.toLowerCase()
+                        && row.lastName.toLowerCase() == lastname.toLowerCase())
+                    ){
+                        setFromData.push(row);
+                    }else if( row.firstName.toLowerCase() === firstname.toLowerCase()){
+                        setFromData.push(row);
+                    }
+                    
+                 
+            });                  
             resolve(setFromData);
         });
+    },
+    getTeam: function (teamid) {
+        team = jsondata.teams[teamid] || jsondata.teams["Default"];
+        return(team);
     },
     searchForTeams: function () {
         return new Promise(function (resolve) {

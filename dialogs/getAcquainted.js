@@ -10,7 +10,7 @@ module.exports = [
         name = name.replace("mijn naam is","");
         name = name.replace("mijn voornaam is","");
         session.userData.name = name;
-        builder.Choice.text(session, 'ben jij '+ name +'?');
+        //builder.Prompts.text(session, 'ben jij '+ name +'?');
         session.send('Hoi %s! aangenaam kennis te maken.', session.userData.name);
         session.endDialog();
     }

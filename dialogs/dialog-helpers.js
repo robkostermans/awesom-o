@@ -17,7 +17,18 @@ module.exports = {
         
     },
 
-    isWithinRange(text, min, max) {
-        // check if text is between min and max length
+    teamAsAttachment(team) {
+        return new builder.HeroCard()
+            .title(team.DisplayName)
+            .subtitle(team.Focus)
+            .text()
+            .tap()
+            .images([new builder.CardImage().url(team.Emblem)])
+            .buttons([
+                new builder.CardAction()
+                    .title('More details')
+                    .type('openUrl')
+                    .value('https://www.wortell.nl/teams/web')
+            ]);
     }
 }

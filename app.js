@@ -11,6 +11,7 @@ server.listen(process.env.PORT || 3000, function () {
 
 var appId = process.env.MY_APP_ID || "Missing your app ID";
 var appSecret = process.env.MY_APP_SECRET || "Missing your app secret";
+var LuisUrl = process.env.LUIS_MODEL_URL || "Missing your LUIS URL"
 
 // Create chat bot
 var connector = new builder.ChatConnector
@@ -21,9 +22,11 @@ server.post('/api/messages', connector.listen());
 var normalizedPath = require("path").join(__dirname, "intents");
 var AllIntentsRecognizers = [];
 require("fs").readdirSync(normalizedPath).forEach(function(file) {
-  AllIntentsRecognizers.push(require("./intents/" + file));
+    if(file.indexOf("_")!=0){
+        AllIntentsRecognizers.push(require("./intents/" + file));
+    }
 });
-
+AllIntentsRecognizers.push( new builder.LuisRecognizer(LuisUrl))
 
 const intents = new builder.IntentDialog({
     recognizers: AllIntentsRecognizers,
@@ -32,8 +35,11 @@ const intents = new builder.IntentDialog({
 });
 
 intents.matches('AlleTeams', '/AlleTeams');
-intents.matches('TeamForPerson', '/TeamForPerson');
-intents.matches('TeamDetails', '/TeamDetails');
+//intents.matches('TeamForPerson', '/TeamForPerson');
+intents.matches('FindTeamForUser', '/FindTeamForUser');
+
+
+//intents.matches('TeamDetails', '/TeamDetails');
 intents.matches('AboutAwesomeO', '/aboutAwesome-o');
 intents.matches(/\!\:/i, '/doCommands');
 intents.onDefault('/default');
@@ -60,7 +66,7 @@ bot.dialog("/getAcquainted",require('./dialogs/getAcquainted'))
 
 bot.dialog("/aboutAwesome-o",require('./dialogs/aboutAwesome-o'))
 
-bot.dialog('/TeamForPerson',require('./dialogs/TeamForPerson'))
+bot.dialog('/FindTeamForUser',require('./dialogs/FindTeamForUser'))
 
 bot.dialog('/TeamDetails',require('./dialogs/TeamDetails'))
 
