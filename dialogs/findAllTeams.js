@@ -1,5 +1,6 @@
-var builder = require('botbuilder');
-var Store = require('../assets/store');
+const builder = require('botbuilder');
+const Store = require('../assets/store');
+const Helpers = require("./dialog-helpers");
 
 module.exports = [
     function(session,next){
@@ -11,7 +12,7 @@ module.exports = [
                 
                 session.dialogData.teams = teams
                 
-                teamslist ="## De volgende teams zijn er binnen Wortell:\n\n";
+                teamslist ="### De volgende teams zijn er binnen Wortell:\n\n";
                 for(var index in teams){
                     team = teams[index];
                     teamslist +="- "+team.DisplayName+"\n ";
@@ -24,16 +25,23 @@ module.exports = [
         })
     },
     function (session, results, next){
+        var message =  new builder.Message(session);
         session.dialogData.team = results.response;
         session.send('Moment, Ik ga op zoek naar informatie over: %s', results.response); 
-        next();
+        team = Store.matchTeam(session.dialogData.team);
+        if(team.length>0){
+            //console.log(team[0]);
+            message.addAttachment(Helpers.teamAsAttachment(team[0]));
+            session.send(message);
+            session.endDialog();
+        }else{
+            message.text("die naam kan ik niet vinden in het rijtje. Probeer opnieuw?").
+            session.send(message);
+            next({ resumed: builder.ResumeReason.back })
+        }
+        
+        
     },
-    function (session, results, next){
-        // check
-       // console.log(session.dialogData.teams)
-        session.send('Gevonden'); 
-        session.endDialog();
-    }
 
 ];
 

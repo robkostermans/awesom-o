@@ -18,6 +18,7 @@ module.exports = {
     },
 
     teamAsAttachment(team) {
+        console.log(team)
         return new builder.HeroCard()
             .title(team.DisplayName)
             .subtitle(team.Focus)
@@ -26,9 +27,9 @@ module.exports = {
             .images([new builder.CardImage().url(team.Emblem)])
             .buttons([
                 new builder.CardAction()
-                    .title('More details')
+                    .title('Naar website van team')
                     .type('openUrl')
-                    .value('https://www.wortell.nl/teams/web')
+                    .value('http://www.wortell.nl/teams/web')
             ]);
     }
 }

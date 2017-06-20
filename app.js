@@ -35,8 +35,8 @@ const intents = new builder.IntentDialog({
 });
 
 intents.matches('AlleTeams', '/AlleTeams');
-//intents.matches('TeamForPerson', '/TeamForPerson');
 intents.matches('FindTeamForUser', '/FindTeamForUser');
+intents.matches('FindAllTeams', '/FindAllTeams');
 
 
 //intents.matches('TeamDetails', '/TeamDetails');
@@ -68,9 +68,7 @@ bot.dialog("/aboutAwesome-o",require('./dialogs/aboutAwesome-o'))
 
 bot.dialog('/FindTeamForUser',require('./dialogs/FindTeamForUser'))
 
-bot.dialog('/TeamDetails',require('./dialogs/TeamDetails'))
-
-bot.dialog('/AlleTeams',require('./dialogs/AllTeams'))
+bot.dialog('/FindAllTeams',require('./dialogs/findAllTeams'))
 
 bot.dialog('/doCommands',require('./dialogs/doCommands'))
 

@@ -44,10 +44,9 @@ module.exports = {
     isUser: function(entities){
         return new Promise(function (resolve) {
             setFromData = [] ;
-
-            foundUsers = jsondata.people.filter(function (row) {
-                var firstname = false;
-                var lastname =  false;
+           
+            var firstname = "";
+                var lastname =  "";
                 for(var index in entities){
                     entity = entities[index];
                     if(entity.type=="person::firstname"){
@@ -57,17 +56,16 @@ module.exports = {
                         lastname = entity.entity;
                     }
                 };
-                console.log(firstname)
-                    if(
-                        (firstname && lastname)
-                        && (row.firstName.toLowerCase() == firstname.toLowerCase()
-                        && row.lastName.toLowerCase() == lastname.toLowerCase())
-                    ){
-                        setFromData.push(row);
-                    }else if( row.firstName.toLowerCase() === firstname.toLowerCase()){
-                        setFromData.push(row);
-                    }
-                    
+           foundUsers = jsondata.people.filter(function (row) {
+                if(
+                    row.firstName.toLowerCase() == firstname.toLowerCase()
+                    && row.lastName.toLowerCase() == lastname.toLowerCase()
+                ){
+                    setFromData.push(row);
+                }else if(lastname=="" && row.firstName.toLowerCase() == firstname.toLowerCase()){
+                    setFromData.push(row);
+                }
+                
                  
             });                  
             resolve(setFromData);
@@ -76,6 +74,19 @@ module.exports = {
     getTeam: function (teamid) {
         team = jsondata.teams[teamid] || jsondata.teams["Default"];
         return(team);
+    },
+    matchTeam: function (utterance) {
+        setFromData = [] ;
+        utterance = utterance.replace("team","");
+        utterance = utterance.trim();
+        for(var index in jsondata.teams){
+            team = jsondata.teams[index];
+            var reg = new RegExp(team.DisplayName, "ig");
+            if(utterance.match(reg) /*|| team.DisplayName.toLowerCase() == utterance.toLowerCase() || index.toLowerCase() == utterance.toLowerCase()*/ ) {
+                setFromData.push(team);
+            }
+        };
+        return(setFromData);
     },
     searchForTeams: function () {
         return new Promise(function (resolve) {
