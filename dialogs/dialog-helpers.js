@@ -39,7 +39,7 @@ module.exports = {
             .subtitle('Ik weet vanalles over teams binnen wortell.')
             .text('Je kan me vragen welke teams er zijn, wie in welk team zit of meer informatie over mij.')
             .images([
-                builder.CardImage.create(session, 'http://awesom-o.azurewebsites.net/assets/boto-logo.png')
+                builder.CardImage.create(session, 'http://awesom-o.azurewebsites.net/assets/bot-logo.png')
             ])
     }
 }
