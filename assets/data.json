@@ -105,22 +105,22 @@
     },
     "people" : [
         {
-            "firstName" : "Marlon ",
+            "firstName" : "Marlon",
             "lastName" : "Ranson",
             "Team" : "greenloveharmony"
         },
         {
-            "firstName" : "Rutger ",
+            "firstName" : "Rutger",
             "lastName" : "Tideman",
             "Team" : "greenloveharmony"
         },
         {
-            "firstName" : "Natasja ",
+            "firstName" : "Natasja",
             "lastName" : "van Doorn",
             "Team" : "greenloveharmony"
         },
         {
-            "firstName" : "Fieke ",
+            "firstName" : "Fieke",
             "lastName" : "Verhagen",
             "Team" : "greenloveharmony"
         },
@@ -162,47 +162,83 @@
         {
             "firstName" : "Guido",
             "lastName" : "Ploum",
-            "Team" : ""
+            "Team" : "spin"
         },
          {
             "firstName" : "Cas",
             "lastName" : "Hastrich",
-            "Team" : ""
+            "Team" : "spin"
         },
          {
             "firstName" : "Neal",
             "lastName" : "Pels",
-            "Team" : ""
+            "Team" : "spin"
         },
          {
             "firstName" : "Emiel",
             "lastName" : "Dellensen",
-            "Team" : ""
+            "Team" : "spin"
         },
          {
             "firstName" : "Susan",
             "lastName" : "Schoone",
-            "Team" : ""
+            "Team" : "spin"
         },
          {
             "firstName" : "Jolien",
             "lastName" : "Schipper",
-            "Team" : ""
+            "Team" : "spin"
         },
          {
             "firstName" : "Melissa",
             "lastName" : "Huis",
-            "Team" : ""
+            "Team" : "spin"
+        },
+        {
+            "firstName" : "Naila",
+            "lastName" : "Zemouri",
+            "Team" : "wolves"
         },
         
+        {
+            "firstName" : "Dennis",
+            "lastName" : "Egmond",
+            "Team" : "wolves"
+        },
+        {
+            "firstName" : "Renee",
+            "lastName" : "Hulsman",
+            "Team" : "wolves"
+        },
+        {
+            "firstName" : "Tom",
+            "lastName" : "de Bakker",
+            "Team" : "wolves"
+        },
+        {
+            "firstName" : "Leoniek",
+            "lastName" : "van Duin",
+            "Team" : "wolves"
+        },
+        {
+            "firstName" : "Melissa",
+            "lastName" : "Huis",
+            "Team" : "wolves"
+        },
+        {
+            "firstName" : "Karolina",
+            "lastName" : "Wisniewska",
+            "Team" : "wolves"
+        },
+        {
+            "firstName" : "Sander",
+            "lastName" : "van Kooten",
+            "Team" : "wolves"
+        },
 
-Sander van Kooten
-Karolina Wisniewska
-Leoniek van Duin
-Tom de Bakker
-Dennis Egmond
-Naila Zemouri
-Renee Hulsman
+ 
+ 
+ 
 
 
         {
